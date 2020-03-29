@@ -35,6 +35,7 @@ public class JdbcUtilities {
 			Connection connection = getConnection();
 			//createStatement() from library
 			Statement st = connection.createStatement();
+			//res shows how many rows are affected
 			res = st.executeUpdate(sql);
 			//mysql has autocommit so we dont need the following method
 			//connection.commit();
@@ -46,14 +47,15 @@ public class JdbcUtilities {
 
 		return res;
 	}
-
-	public static ResultSet getResult(String sql) {
+//for executing the select queries we need to call executeQuery() and executeQuery()
+//will return the Resultset object
+public static ResultSet getResult(String sql) {
 		ResultSet rs = null;
 		try {
 			Connection connection = getConnection();
 			Statement st = connection.createStatement();
 			rs = st.executeQuery(sql);
-			connection.commit();
+			//connection.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
